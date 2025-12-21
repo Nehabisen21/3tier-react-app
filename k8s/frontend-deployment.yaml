@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: react
-          image: neha2108/frontend
+          image: neha2108/frontend:v1
           ports:
             - containerPort: 80
 ---
