@@ -1,0 +1,88 @@
+1  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    2  sudo apt install unzip
+    3  unzip awscliv2.zip
+    4  sudo ./aws/install
+    5  aws configure
+    6  curl -LO https://dl.k8s.io/release/v1.29.0/bin/linux/amd64/kubectl
+    7  chmod +x ./kubectl
+    8  sudo mv ./kubectl /usr/local/bin
+    9  kubectl version --short --client
+   10  curl -LO https://dl.k8s.io/release/v1.29.0/bin/linux/amd64/kubectl
+   11  chmod +x ./kubectl
+   12  sudo mv ./kubectl /usr/local/bin
+   13  kubectl version --short --client
+   14  curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+   15  sudo mv /tmp/eksctl /usr/local/bin
+   16  eksctl version
+   17  kubectl
+   18  eksctl create cluster --name=K8s-Cluster1                     --region=us-east-1                     --version=1.30                     --without-nodegroup
+   19  eksctl utils associate-iam-oidc-provider   --region us-east-1   --cluster K8s-Cluster1   --approve
+   20  eksctl create nodegroup --cluster=K8s-Cluster1                      --region=us-east-1                      --name=Node                       --node-type=t3.small                      --nodes=2                      --nodes-min=2                      --nodes-max=2                      --node-volume-size=29                      --ssh-access                      --ssh-public-key=new-aws-key \
+   21  eksctl create nodegroup --cluster=K8s-Cluster1                      --region=us-east-1                      --name=Node                       --node-type=t3.small                      --nodes=2                      --nodes-min=2                      --nodes-max=2                      --node-volume-size=29                      --ssh-access                      --ssh-public-key=new-aws-key 
+   22  kubectl get nodes
+   23  git clone https://github.com/Nehabisen21/K8s-3-tier.git
+   24  ls
+   25  cd K8s-3-tier/
+   26  ls
+   27  cd k8s/
+   28  ls -lrt
+   29  vi frontend-deployment.yaml 
+   30  kubectl apply -f frontend-deployment.yaml 
+   31  vi namespace.yaml 
+   32  kubectl apply -f namespace.yaml 
+   33  kubectl apply -f frontend-deployment.yaml 
+   34  kubectl get pods -n react-app
+   35  kubectl get pods -n react-app -o wide
+   36  kubectl get svc -n react-app -o wide
+   37  ls -lrt
+   38  curl -O https://get.helm.sh/helm-v3.16.2-linux-amd64.tar.gz
+   39  tar xvf helm-v3.16.2-linux-amd64.tar.gz
+   40  sudo mv linux-amd64/helm /usr/local/bin
+   41  helm version
+   42  helm repo add bitnami https://charts.bitnami.com/bitnami
+   43  helm repo update
+   44  helm install postgres bitnami/postgresql   -f values.yml   --namespace react-app   --create-namespace
+   45  cd ..
+   46  ls
+   47  cd helm/
+   48  helm install postgres bitnami/postgresql   -f values.yml   --namespace react-app   --create-namespace
+   49  kubectl get pods -n react-app
+   50  kubectl get pods -n kube-system | grep ebs
+   51  aws eks create-addon   --cluster-name K8s-Cluster1   --addon-name aws-ebs-csi-driver
+   52  eksctl create iamserviceaccount   --name ebs-csi-controller-sa   --namespace kube-system   --cluster K8s-Cluster1   --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy   --approve   --override-existing-serviceaccounts --region us-east-1
+   53  kubectl rollout restart deployment ebs-csi-controller -n kube-system
+   54  helm uninstall postgres -n database
+   55  helm uninstall postgres -n react-app
+   56  kubectl delete pvc -n react-app --all
+   57  helm install postgres bitnami/postgresql   -f values.yml   -n react-app
+   58  kubectl get pods -n react-app
+   59  kubectl describe po postgres-postgresql-0 -n react-app
+   60  kubectl get pvc -n react-app
+   61  kubectl get pods -n react-app
+   62  helm list -A | grep postgres
+   63  kubectl describe pod postgres-postgresql-0 -n react-app
+   64  ls
+   65  cd ..
+   66  cd k8s/
+   67  ls
+   68  vi storage-class.yml 
+   69  kubectl apply -f storage-class.yml 
+   70  kubectl describe pod postgres-postgresql-0 -n react-app
+   71  kubectl create secret generic postgres-secret   --from-literal=postgres-password=StrongPassword123   -n react-app
+   72  kubectl describe pod postgres-postgresql-0 -n react-app
+   73  kubectl get pods -n react-app
+   74  kubectl get pods -n react-app -w
+   75  kubectl describe pod postgres-postgresql-0 -n react-app
+   76  kubectl get pods -n react-app 
+   77  kubectl apply -f backend-deployment.yaml
+   78  vi backend-deployment.yaml
+   79  vi backend-service.yaml 
+   80  ls -lrt
+   81  vi configmap.yml 
+   82  kubectl apply -f backend-deployment.yaml
+   83  kubectl apply -f backend-service.yaml 
+   84  kubectl apply -f configmap.yml 
+   85  kubectl get pods -n react-app -w
+   86  watch kubectl get pods -n react-app 
+   87  watch kubectl get pods,svc -n react-app 
+   88  watch kubectl get pods,svc -n react-app -o wide

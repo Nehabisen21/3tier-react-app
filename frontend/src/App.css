@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+}
+
+.container {
+    text-align: center;
+    padding: 40px;
+}
+
+.hero-image {
+    width: 200px;
+    /* smaller image width */
+    border-radius: 12px;
+    margin-bottom: 20px;
+    /* less spacing */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #1f2937;
+    font-size: 24px;
+}
+
+p {
+    font-size: 16px;
+    color: #374151;
+    max-width: 600px;
+    margin: 10px auto;
+}

@@ -1,0 +1,9 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: gp3
+provisioner: ebs.csi.aws.com
+reclaimPolicy: Retain ##if volume is delete the data will be restored
+volumeBindingMode: WaitForFirstConsumer ##Volume is created only when Pod is scheduled
+parameters:
+  type: gp3
