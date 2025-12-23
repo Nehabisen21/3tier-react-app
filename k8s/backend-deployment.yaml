@@ -22,7 +22,6 @@ spec:
         - configMapRef:
             name: postgres-config
         env:
-         env:
         - name: DB_PASSWORD
           value: StrongPassword123
 
