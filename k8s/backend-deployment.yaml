@@ -22,9 +22,7 @@ spec:
         - configMapRef:
             name: postgres-config
         env:
+         env:
         - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: postgres-secret
-              key: postgres-password
+          value: StrongPassword123
 
