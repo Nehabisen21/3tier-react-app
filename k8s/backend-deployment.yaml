@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-deployment
-  namespace: react-app
+  namespace: database
 spec:
   replicas: 2
   selector:
@@ -23,5 +23,7 @@ spec:
             name: postgres-config
         env:
         - name: DB_PASSWORD
-          value: StrongPassword123
-
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: postgres-password
