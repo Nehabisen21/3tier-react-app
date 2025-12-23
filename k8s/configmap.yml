@@ -2,10 +2,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: postgres-config
-  namespace: react-app
+  namespace: database
 data:
-  DB_HOST: postgres-postgresql
+  DB_HOST: postgres-postgresql.database.svc.cluster.local
   DB_PORT: "5432"
   DB_NAME: reactdb
   DB_USER: reactuser
-
